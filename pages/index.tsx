@@ -1,4 +1,5 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { IconSun, IconMoonStars } from '@tabler/icons';
 import {
   AppShell,
@@ -7,7 +8,9 @@ import {
   Group,
   ActionIcon,
   useMantineColorScheme,
+  ScrollArea,
   Footer,
+  Text,
 } from '@mantine/core';
 import { MainLinks } from './_mainLinks';
 import { User } from './_user';
@@ -23,7 +26,7 @@ export default function HomePage() {
       padding="xl"
       fixed={false}
       navbar={
-        <Navbar width={{ base: 300 }} height={875} p="xs">
+        <Navbar fixed={false} width={{ base: 250 }} height={880} p="sm">
           <Navbar.Section grow mt="xs">
             <MainLinks />
           </Navbar.Section>
@@ -47,7 +50,9 @@ export default function HomePage() {
       }
       footer={
         <Footer height={60} p="md" fixed={true}>
-          Application footer
+          <Group sx={{ height: '100%' }} px={20} position="center">
+            Made in the UAE with <span sx={{ color: '#FF5252' }}>❤</span> by Abu Usama
+          </Group>
         </Footer>
       }
       styles={(theme) => ({
@@ -57,7 +62,9 @@ export default function HomePage() {
         },
       })}
     >
-      <AppComponent />
+      <div suppressHydrationWarning>
+        <AppComponent />
+      </div>
     </AppShell>
   );
 }

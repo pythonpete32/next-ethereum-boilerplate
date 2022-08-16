@@ -4,6 +4,7 @@ import { AppProps } from 'next/app';
 import { getCookie, setCookie } from 'cookies-next';
 import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
 import { NotificationsProvider } from '@mantine/notifications';
 import '@rainbow-me/rainbowkit/styles.css';
 import {
@@ -74,9 +75,11 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         >
           <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
             <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-              <NotificationsProvider>
-                <Component {...pageProps} />
-              </NotificationsProvider>
+              <ModalsProvider>
+                <NotificationsProvider position="top-center" zIndex={3077}>
+                  <Component {...pageProps} />
+                </NotificationsProvider>
+              </ModalsProvider>
             </MantineProvider>
           </ColorSchemeProvider>
         </RainbowKitProvider>
